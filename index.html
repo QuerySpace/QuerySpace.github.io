@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Student Scores</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .button {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 40px;
+  }
+  .black {
+    background-color: black;
+    color: white;
+  }
+  .green {
+    background-color: green;
+    color: white;
+  }
+  .red {
+    background-color: red;
+    color: white;
+  }
+  .blue {
+    background-color: blue;
+    color: white;
+  }
+  input[type="text"],
+  textarea {
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="row">
+  <button class="button black">C</button>
+  <input type="text" value="Student 1" readonly>
+  <button class="button green">+</button>
+  <button class="button red">-</button>
+  <textarea class="blue" rows="1" readonly></textarea>
+</div>
+
+<div class="row">
+  <button class="button black">C</button>
+  <input type="text" value="Student 2" readonly>
+  <button class="button green">+</button>
+  <button class="button red">-</button>
+  <textarea class="blue" rows="1" readonly></textarea>
+</div>
+
+<div class="row">
+  <button class="button black">C</button>
+  <input type="text" value="Student 3" readonly>
+  <button class="button green">+</button>
+  <button class="button red">-</button>
+  <textarea class="blue" rows="1" readonly></textarea>
+</div>
+
+<script>
+  // JavaScript code for button functionalities
+  document.querySelectorAll('.row').forEach(row => {
+    const plusBtn = row.querySelector('.green');
+    const minusBtn = row.querySelector('.red');
+    const summaryField = row.querySelector('.blue');
+    let successfulTrials = 0;
+    let totalTrials = 0;
+
+    plusBtn.addEventListener('click', () => {
+      successfulTrials++;
+      totalTrials++;
+      updateSummary();
+    });
+
+    minusBtn.addEventListener('click', () => {
+      totalTrials++;
+      updateSummary();
+    });
+
+    row.querySelector('.black').addEventListener('click', () => {
+      successfulTrials = 0;
+      totalTrials = 0;
+      updateSummary();
+    });
+
+    function updateSummary() {
+      summaryField.value = `${successfulTrials}/${totalTrials} = ${totalTrials ? Math.round((successfulTrials / totalTrials) * 100) : 0}%`;
+    }
+  });
+</script>
+
+</body>
+</html>
